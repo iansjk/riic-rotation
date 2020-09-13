@@ -17,3 +17,13 @@ export interface Operator {
   rarity: number;
   bonuses: OperatorBonus[];
 }
+
+export function maxEliteStatus(operator: Operator): number {
+  if (operator.rarity >= 4) {
+    return 2;
+  }
+  if (operator.rarity >= 3) {
+    return 1;
+  }
+  return 0;
+}

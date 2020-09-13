@@ -34,6 +34,9 @@ module.exports = {
     'import/no-named-as-default': 'off',
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
+    'react/require-default-props': ['error', {
+      ignoreFunctionalComponents: true
+    }],
     'prettier/prettier': [
       'error',
       {
