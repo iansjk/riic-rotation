@@ -2,6 +2,7 @@ import Box from "@material-ui/core/Box";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import React from "react";
 import OperatorImage from "./OperatorImage";
 import { Operator } from "./operators/operator";
@@ -65,7 +66,7 @@ export default function OperatorButton(
                 : {}
             }
           >
-            {labelText}
+            <Typography variant="body2">{labelText}</Typography>
           </Box>
         </Grid>
       </ButtonBase>

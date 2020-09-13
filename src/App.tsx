@@ -6,6 +6,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
+import Base from "./Base";
 import OperatorGrid from "./OperatorGrid";
 
 export default function App(): React.ReactElement {
@@ -30,9 +31,12 @@ export default function App(): React.ReactElement {
       <Toolbar />
 
       <Container maxWidth="lg">
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item sm={12} md={6}>
             <OperatorGrid />
+          </Grid>
+          <Grid item sm={12} md={6}>
+            <Base />
           </Grid>
         </Grid>
       </Container>
