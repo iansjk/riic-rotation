@@ -1,6 +1,28 @@
 import FacilityType from "./facility-type";
 import { Operator } from "./operator";
 
+export const FREE_OPERATOR_NAMES = [
+  "Amiya",
+  "Yato",
+  "Durin",
+  "12F",
+  "Rangers",
+  "Noir Corne",
+  "Hibiscus",
+  "Adnachiel",
+  "Jessica",
+  "Fang",
+  "Plume",
+  "Lava",
+  "Beagle",
+  "Ansel",
+  "Melantha",
+  "Kroos",
+  "Orchid",
+  "Lancet-2",
+  "Shaw",
+  "Cliffheart",
+];
 export const OPERATORS: Operator[] = [
   {
     name: "Gravel",
