@@ -29,6 +29,24 @@ const freeOperators = (): Map<string, EliteLevel> => {
   >;
 };
 
+const appTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    tradingPost: {
+      main: "rgb(48, 208, 249)",
+      dark: "rgb(0, 159, 198)",
+    },
+    factory: {
+      main: "rgb(255, 205, 0)",
+      dark: "rgb(199, 157, 0)",
+    },
+    powerPlant: {
+      main: "rgb(204, 255, 100)",
+      dark: "rgb(152, 204, 47)",
+    },
+  },
+});
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     scheduleFab: {
@@ -41,23 +59,6 @@ const useStyles = makeStyles((theme) =>
 
 export default function App(): React.ReactElement {
   const classes = useStyles();
-  const theme = createMuiTheme({
-    palette: {
-      type: "dark",
-      tradingPost: {
-        main: "rgb(48, 208, 249)",
-        dark: "rgb(0, 159, 198)",
-      },
-      factory: {
-        main: "rgb(255, 205, 0)",
-        dark: "rgb(199, 157, 0)",
-      },
-      powerPlant: {
-        main: "rgb(204, 255, 100)",
-        dark: "rgb(152, 204, 47)",
-      },
-    },
-  });
 
   const [tradingPosts, setTradingPosts] = useState([] as (1 | 2 | 3)[]);
   const [factories, setFactories] = useState([] as (1 | 2 | 3)[]);
@@ -154,7 +155,7 @@ export default function App(): React.ReactElement {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={appTheme}>
       <CssBaseline />
 
       <AppBar>
