@@ -57,10 +57,7 @@ export default function OperatorButton(
     <Box boxShadow={3}>
       <ButtonBase onClick={onClick}>
         <Grid className={classes.gridItem} item xs>
-          <OperatorImage
-            operator={operator}
-            eliteLevel={eliteLevel}
-          />
+          <OperatorImage operator={operator} eliteLevel={eliteLevel} />
           <Box
             className={classes.operatorName}
             style={
