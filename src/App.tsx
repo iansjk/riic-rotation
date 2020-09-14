@@ -16,9 +16,9 @@ import Fab from "@material-ui/core/Fab";
 import Box from "@material-ui/core/Box";
 import OperatorGrid from "./components/OperatorGrid";
 import Base from "./components/Base";
-import FacilityType from "./operators/facility-type";
-import OPERATORS, { FREE_OPERATOR_NAMES } from "./operators/operators";
-import { EliteLevel, maxEliteLevel, Operator } from "./operators/operator";
+import FacilityType from "./scheduler/facility-type";
+import OPERATORS, { FREE_OPERATOR_NAMES } from "./scheduler/operators";
+import { EliteLevel, maxEliteLevel, Operator } from "./scheduler/operator";
 
 const DEFAULT_FACILITY_LEVEL = 3;
 

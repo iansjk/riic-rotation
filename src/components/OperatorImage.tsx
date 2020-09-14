@@ -1,7 +1,7 @@
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import { EliteLevel, Operator } from "../operators/operator";
+import { EliteLevel, Operator } from "../scheduler/operator";
 
 const operatorImageSize = 80;
 const eliteLevelImageSize = 30;

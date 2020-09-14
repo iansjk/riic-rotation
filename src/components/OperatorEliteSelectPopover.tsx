@@ -4,7 +4,7 @@ import Popover from "@material-ui/core/Popover";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import OperatorButton from "./OperatorButton";
-import { EliteLevel, maxEliteLevel, Operator } from "../operators/operator";
+import { EliteLevel, maxEliteLevel, Operator } from "../scheduler/operator";
 
 const useStyles = makeStyles({
   backdrop: {

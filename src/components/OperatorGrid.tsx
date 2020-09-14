@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
-import { EliteLevel, Operator } from "../operators/operator";
+import { EliteLevel, Operator } from "../scheduler/operator";
 import OperatorCell from "./OperatorCell";
 
 interface OperatorGridProps {

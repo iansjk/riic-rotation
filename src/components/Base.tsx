@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import FacilityType from "../operators/facility-type";
+import FacilityType from "../scheduler/facility-type";
 import Facility from "./Facility";
 
 const useStyles = makeStyles((theme) =>

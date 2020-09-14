@@ -6,7 +6,7 @@ import {
 import React from "react";
 import OperatorButton from "./OperatorButton";
 import OperatorEliteSelectPopover from "./OperatorEliteSelectPopover";
-import { EliteLevel, Operator } from "../operators/operator";
+import { EliteLevel, Operator } from "../scheduler/operator";
 
 interface OperatorCellProps {
   operator: Operator;
