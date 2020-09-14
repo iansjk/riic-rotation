@@ -13,6 +13,15 @@ export default function App(): React.ReactElement {
   const theme = createMuiTheme({
     palette: {
       type: "dark",
+      tradingPost: {
+        main: "rgb(48, 208, 249)",
+      },
+      factory: {
+        main: "rgb(255, 205, 0)",
+      },
+      powerPlant: {
+        main: "rgb(204, 255, 100)",
+      },
     },
   });
 

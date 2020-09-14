@@ -1,6 +1,11 @@
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  useTheme,
+} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
@@ -59,13 +64,22 @@ export default function BaseFacility(
 ): React.ReactElement {
   const { type, level } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  let color = "unset";
+  if (type === FacilityType.TRADING_POST) {
+    color = theme.palette.tradingPost.main;
+  } else if (type === FacilityType.FACTORY) {
+    color = theme.palette.factory.main;
+  } else if (type === FacilityType.POWER_PLANT) {
+    color = theme.palette.powerPlant.main;
+  }
 
   return (
     <Box whiteSpace="nowrap" display="flex" mb={1}>
       <Paper
         elevation={3}
         className={classes.facilityRibbon}
-        style={{ backgroundColor: RIBBON_COLORS.get(type) }}
+        style={{ backgroundColor: color }}
       />
       <Paper elevation={3} className={classes.facilityInfo}>
         <Box display="flex">
@@ -78,7 +92,7 @@ export default function BaseFacility(
               <FacilityLevelIndicator
                 // eslint-disable-next-line react/no-array-index-key
                 key={i}
-                color={RIBBON_COLORS.get(type)}
+                color={color}
               />
             ))}
         </Box>
