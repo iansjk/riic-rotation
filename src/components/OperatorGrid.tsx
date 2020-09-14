@@ -2,7 +2,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import React, { useState } from "react";
-import { EliteLevel } from "../operators/operator";
+import { EliteLevel, Operator } from "../operators/operator";
 import { OPERATORS, FREE_OPERATOR_NAMES } from "../operators/operators";
 import OperatorCell from "./OperatorCell";
 
@@ -13,6 +13,20 @@ function OperatorGrid(): React.ReactElement {
       EliteLevel
     >
   );
+
+  function operatorSort(a: Operator, b: Operator) {
+    const byOwned =
+      (ownedOperators.has(a.name) ? -1 : 1) -
+      (ownedOperators.has(b.name) ? -1 : 1);
+    if (byOwned !== 0) {
+      return byOwned;
+    }
+    const byRarityAsc = a.rarity - b.rarity;
+    if (byRarityAsc !== 0) {
+      return byRarityAsc;
+    }
+    return a.name.localeCompare(b.name);
+  }
 
   function handleEliteSelect(
     operatorName: string,
@@ -36,7 +50,7 @@ function OperatorGrid(): React.ReactElement {
         </Typography>
       </Box>
       <Grid container>
-        {OPERATORS.map((operator) => (
+        {OPERATORS.sort(operatorSort).map((operator) => (
           <OperatorCell
             key={operator.name}
             operator={operator}
