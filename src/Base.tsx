@@ -13,14 +13,23 @@ const useStyles = makeStyles((theme) =>
     addTradingPostButton: {
       width: "100%",
       backgroundColor: theme.palette.tradingPost.main,
+      "&:hover": {
+        backgroundColor: theme.palette.tradingPost.dark,
+      },
     },
     addFactoryButton: {
       width: "100%",
       backgroundColor: theme.palette.factory.main,
+      "&:hover": {
+        backgroundColor: theme.palette.factory.dark,
+      },
     },
     addPowerPlantButton: {
       width: "100%",
       backgroundColor: theme.palette.powerPlant.main,
+      "&:hover": {
+        backgroundColor: theme.palette.powerPlant.dark,
+      },
     },
   })
 );
