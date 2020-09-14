@@ -12,7 +12,7 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import CancelIcon from "@material-ui/icons/Cancel";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import React from "react";
-import FacilityType from "./operators/facility-type";
+import FacilityType from "../operators/facility-type";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

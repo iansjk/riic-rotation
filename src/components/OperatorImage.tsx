@@ -1,7 +1,7 @@
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import { Operator } from "./operators/operator";
+import { Operator } from "../operators/operator";
 
 const operatorImageSize = 80;
 const eliteStatusImageSize = 30;

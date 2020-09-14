@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import OperatorImage from "./OperatorImage";
-import { Operator } from "./operators/operator";
+import { Operator } from "../operators/operator";
 
 const OPERATOR_RARITY_COLORS = [
   undefined,

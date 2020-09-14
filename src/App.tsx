@@ -6,8 +6,8 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import Base from "./Base";
-import OperatorGrid from "./OperatorGrid";
+import Base from "./components/Base";
+import OperatorGrid from "./components/OperatorGrid";
 
 export default function App(): React.ReactElement {
   const theme = createMuiTheme({

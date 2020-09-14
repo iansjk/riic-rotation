@@ -1,6 +1,6 @@
 import React from "react";
 import BaseFacility from "./BaseFacility";
-import FacilityType from "./operators/facility-type";
+import FacilityType from "../operators/facility-type";
 
 interface TradingPostProps {
   level: 1 | 2 | 3;
