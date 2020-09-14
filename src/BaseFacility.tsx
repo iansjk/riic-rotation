@@ -1,4 +1,5 @@
 import Box from "@material-ui/core/Box";
+import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
 import {
   createStyles,
@@ -7,17 +8,11 @@ import {
   useTheme,
 } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
-import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import IconButton from "@material-ui/core/IconButton";
+import CancelIcon from "@material-ui/icons/Cancel";
+import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
+import React from "react";
 import FacilityType from "./operators/facility-type";
-
-const RIBBON_COLORS = new Map<FacilityType, string>([
-  [FacilityType.POWER_PLANT, "rgb(204, 255, 100)"],
-  [FacilityType.FACTORY, "rgb(255, 205, 0)"],
-  [FacilityType.TRADING_POST, "rgb(48, 208, 249)"],
-]);
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -75,7 +70,12 @@ export default function BaseFacility(
   }
 
   return (
-    <Box whiteSpace="nowrap" display="flex" mb={1}>
+    <Box whiteSpace="nowrap" display="flex" mb={1} position="relative">
+      <Box position="absolute" top="-22px" right="-22px">
+        <IconButton>
+          <CancelIcon />
+        </IconButton>
+      </Box>
       <Paper
         elevation={3}
         className={classes.facilityRibbon}
