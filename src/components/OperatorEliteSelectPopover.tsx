@@ -15,6 +15,7 @@ const useStyles = makeStyles({
 
 interface OperatorEliteSelectPopoverProps {
   operator: Operator;
+  onEliteSelect: (operatorName: string, eliteLevel?: EliteLevel) => void;
   // bindPopover() properties follow...
   id: string | undefined;
   anchorEl: HTMLElement | undefined;
@@ -27,7 +28,15 @@ interface OperatorEliteSelectPopoverProps {
 export default function OperatorEliteSelectPopover(
   props: OperatorEliteSelectPopoverProps
 ): React.ReactElement {
-  const { open, operator } = props;
+  const {
+    operator,
+    onEliteSelect,
+    id,
+    anchorEl,
+    open,
+    onClose,
+    onMouseLeave,
+  } = props;
   const classes = useStyles();
   const eliteLevels: EliteLevel[] = ["Elite 0"];
   if (maxEliteLevel(operator) === "Elite 0 Lv. 30") {
@@ -51,24 +60,35 @@ export default function OperatorEliteSelectPopover(
           vertical: "top",
           horizontal: "left",
         }}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
+        id={id}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={onClose}
+        onMouseLeave={onMouseLeave}
       >
         <Grid container>
           <Grid item>
-            <OperatorButton owned operator={null} onClick={() => {}} />
+            <OperatorButton
+              operator={null}
+              onClick={() => {
+                onClose();
+                onEliteSelect(operator.name);
+              }}
+            />
           </Grid>
           {eliteLevels.map((eliteLevel) => (
             <Grid item key={`${operator.name}${eliteLevel}`}>
-                <OperatorButton
-                  operator={operator}
-                owned
+              <OperatorButton
+                operator={operator}
                 eliteLevel={eliteLevel}
                 labelOverride={eliteLevel}
-                />
-              </Grid>
-            ))
-          }
+                onClick={() => {
+                  onClose();
+                  onEliteSelect(operator.name, eliteLevel);
+                }}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Popover>
     </>

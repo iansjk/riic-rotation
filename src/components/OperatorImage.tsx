@@ -8,7 +8,7 @@ const eliteLevelImageSize = 30;
 
 const getOperatorImg = (
   operator: Operator | null,
-  eliteLevel: EliteLevel
+  eliteLevel?: EliteLevel
 ): string => {
   if (!operator) {
     return `/images/operators/empty.png`;
@@ -51,12 +51,15 @@ interface OperatorImageProps {
 
 export default function OperatorImage({
   operator,
-  eliteLevel = "Elite 0",
+  eliteLevel,
 }: OperatorImageProps): React.ReactElement {
   const classes = useStyles();
 
   return (
-    <div className={classes.eliteLevelAnchor}>
+    <div
+      className={classes.eliteLevelAnchor}
+      style={!eliteLevel ? { opacity: 0.1 } : {}}
+    >
       <img
         className={classes.operatorImage}
         src={getOperatorImg(operator, eliteLevel)}

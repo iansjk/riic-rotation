@@ -10,12 +10,14 @@ import { EliteLevel, Operator } from "../operators/operator";
 
 interface OperatorCellProps {
   operator: Operator;
+  eliteLevel?: EliteLevel;
+  onEliteSelect: (operatorName: string, eliteLevel?: EliteLevel) => void;
 }
 
 export default function OperatorCell(
   props: OperatorCellProps
 ): React.ReactElement {
-  const { operator } = props;
+  const { operator, eliteLevel, onEliteSelect } = props;
   const popoverState = usePopupState({
     variant: "popover",
     popupId: "eliteStatusPopover",
@@ -25,11 +27,13 @@ export default function OperatorCell(
     <>
       <OperatorButton
         operator={operator}
+        eliteLevel={eliteLevel}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...bindTrigger(popoverState)}
       />
       <OperatorEliteSelectPopover
         operator={operator}
+        onEliteSelect={onEliteSelect}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...bindPopover(popoverState)}
       />
