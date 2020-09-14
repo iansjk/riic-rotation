@@ -57,7 +57,7 @@ export default function Base(props: BaseProps): React.ReactElement {
 
   return (
     <>
-      <Box mt={3} mb={1}>
+      <Box mt={3} mb={2}>
         <Typography component="h3" variant="h5">
           Base Layout
         </Typography>

@@ -18,9 +18,16 @@ import OperatorGrid from "./components/OperatorGrid";
 import Base from "./components/Base";
 import FacilityType from "./operators/facility-type";
 import OPERATORS, { FREE_OPERATOR_NAMES } from "./operators/operators";
-import { EliteLevel, Operator } from "./operators/operator";
+import { EliteLevel, maxEliteLevel, Operator } from "./operators/operator";
 
 const DEFAULT_FACILITY_LEVEL = 3;
+
+const freeOperators = (): Map<string, EliteLevel> => {
+  return new Map(FREE_OPERATOR_NAMES.map((name) => [name, "Elite 0"])) as Map<
+    string,
+    EliteLevel
+  >;
+};
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -55,12 +62,7 @@ export default function App(): React.ReactElement {
   const [tradingPosts, setTradingPosts] = useState([] as (1 | 2 | 3)[]);
   const [factories, setFactories] = useState([] as (1 | 2 | 3)[]);
   const [powerPlants, setPowerPlants] = useState([] as (1 | 2 | 3)[]);
-  const [ownedOperators, setOwnedOperators] = useState(
-    new Map(FREE_OPERATOR_NAMES.map((name) => [name, "Elite 0"])) as Map<
-      string,
-      EliteLevel
-    >
-  );
+  const [ownedOperators, setOwnedOperators] = useState(freeOperators());
 
   function setFacilityArray(
     facilityType: FacilityType,
@@ -139,6 +141,18 @@ export default function App(): React.ReactElement {
     });
   }
 
+  function handleAddAllOperators() {
+    setOwnedOperators(
+      new Map(
+        OPERATORS.map((operator) => [operator.name, maxEliteLevel(operator)])
+      )
+    );
+  }
+
+  function handleResetOperators() {
+    setOwnedOperators(freeOperators());
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -160,6 +174,8 @@ export default function App(): React.ReactElement {
               operators={OPERATORS.sort(operatorSort)}
               ownedOperators={ownedOperators}
               onEliteSelect={handleEliteSelect}
+              onAddAll={handleAddAllOperators}
+              onReset={handleResetOperators}
             />
           </Grid>
           <Grid item sm={12} md={6}>

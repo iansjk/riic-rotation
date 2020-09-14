@@ -1,7 +1,10 @@
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import { EliteLevel, Operator } from "../operators/operator";
 import OperatorCell from "./OperatorCell";
 
@@ -9,17 +12,36 @@ interface OperatorGridProps {
   operators: Operator[];
   ownedOperators: Map<string, EliteLevel>;
   onEliteSelect: (operatorName: string, eliteLevel?: EliteLevel) => void;
+  onAddAll: () => void;
+  onReset: () => void;
 }
 
 function OperatorGrid(props: OperatorGridProps): React.ReactElement {
-  const { operators, ownedOperators, onEliteSelect } = props;
+  const { operators, ownedOperators, onEliteSelect, onAddAll, onReset } = props;
 
   return (
     <>
-      <Box mt={3} mb={1}>
+      <Box display="flex" mt={3} mb={2}>
         <Typography component="h2" variant="h5">
           Owned Operators
         </Typography>
+        <Box ml={4} mr={2}>
+          <Button
+            color="primary"
+            variant="contained"
+            startIcon={<GroupAddIcon />}
+            onClick={onAddAll}
+          >
+            Add All
+          </Button>
+        </Box>
+        <Button
+          variant="outlined"
+          startIcon={<RotateLeftIcon />}
+          onClick={onReset}
+        >
+          Reset
+        </Button>
       </Box>
       <Grid container>
         {operators.map((operator) => (
