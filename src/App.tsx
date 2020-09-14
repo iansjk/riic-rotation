@@ -6,8 +6,11 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import Base from "./components/Base";
+import ScheduleIcon from "@material-ui/icons/Schedule";
+import Fab from "@material-ui/core/Fab";
+import Box from "@material-ui/core/Box";
 import OperatorGrid from "./components/OperatorGrid";
+import Base from "./components/Base";
 
 export default function App(): React.ReactElement {
   const theme = createMuiTheme({
@@ -51,6 +54,15 @@ export default function App(): React.ReactElement {
             <Base />
           </Grid>
         </Grid>
+
+        <Fab variant="extended" color="primary">
+          <Box display="flex">
+            <Box display="flex" mr={1}>
+              <ScheduleIcon />
+            </Box>
+            Schedule
+          </Box>
+        </Fab>
       </Container>
     </ThemeProvider>
   );
