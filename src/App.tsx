@@ -2,7 +2,12 @@ import AppBar from "@material-ui/core/AppBar";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import {
+  createMuiTheme,
+  createStyles,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
@@ -12,7 +17,18 @@ import Box from "@material-ui/core/Box";
 import OperatorGrid from "./components/OperatorGrid";
 import Base from "./components/Base";
 
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    scheduleFab: {
+      position: "sticky",
+      float: "right",
+      bottom: theme.spacing(3),
+    },
+  })
+);
+
 export default function App(): React.ReactElement {
+  const classes = useStyles();
   const theme = createMuiTheme({
     palette: {
       type: "dark",
@@ -55,7 +71,7 @@ export default function App(): React.ReactElement {
           </Grid>
         </Grid>
 
-        <Fab variant="extended" color="primary">
+        <Fab className={classes.scheduleFab} variant="extended" color="primary">
           <Box display="flex">
             <Box display="flex" mr={1}>
               <ScheduleIcon />
