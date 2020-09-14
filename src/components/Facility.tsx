@@ -49,15 +49,16 @@ function FacilityLevelIndicator(
   );
 }
 
-interface BaseFacilityProps {
+export interface FacilityProps {
   type: FacilityType;
   level: 1 | 2 | 3;
+  onRemove: () => void;
+  onIncreaseLevel: () => void;
+  onDecreaseLevel: () => void;
 }
 
-export default function BaseFacility(
-  props: BaseFacilityProps
-): React.ReactElement {
-  const { type, level } = props;
+export default function Facility(props: FacilityProps): React.ReactElement {
+  const { type, level, onRemove, onIncreaseLevel, onDecreaseLevel } = props;
   const classes = useStyles();
   const theme = useTheme();
   let color = "unset";
@@ -72,7 +73,7 @@ export default function BaseFacility(
   return (
     <Box whiteSpace="nowrap" display="flex" mb={1} position="relative">
       <Box position="absolute" top="-22px" right="-22px">
-        <IconButton>
+        <IconButton onClick={onRemove}>
           <CancelIcon />
         </IconButton>
       </Box>
@@ -97,13 +98,23 @@ export default function BaseFacility(
             ))}
         </Box>
         <Box display="flex">
-          <IconButton aria-label="decrease level" size="small">
+          <IconButton
+            aria-label="decrease level"
+            size="small"
+            onClick={onDecreaseLevel}
+            disabled={level <= 1}
+          >
             <RemoveCircleOutlineIcon />
           </IconButton>
           <Box mx="1">
             <Typography variant="overline">Level</Typography>
           </Box>
-          <IconButton aria-label="increase level" size="small">
+          <IconButton
+            aria-label="increase level"
+            size="small"
+            onClick={onIncreaseLevel}
+            disabled={level >= 3}
+          >
             <AddCircleOutlineIcon />
           </IconButton>
         </Box>
