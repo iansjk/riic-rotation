@@ -3,11 +3,9 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import React, { useState } from "react";
+import React from "react";
 import FacilityType from "../operators/facility-type";
 import Facility from "./Facility";
-
-const DEFAULT_FACILITY_LEVEL = 3;
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -35,60 +33,27 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function Base(): React.ReactElement {
+interface BaseProps {
+  tradingPosts: (1 | 2 | 3)[];
+  factories: (1 | 2 | 3)[];
+  powerPlants: (1 | 2 | 3)[];
+  onAddFacility: (facilityType: FacilityType) => void;
+  onRemoveFacility: (facilityType: FacilityType, index: number) => void;
+  onDecreaseFacilityLevel: (facilityType: FacilityType, index: number) => void;
+  onIncreaseFacilityLevel: (facilityType: FacilityType, index: number) => void;
+}
+
+export default function Base(props: BaseProps): React.ReactElement {
   const classes = useStyles();
-  const [tradingPosts, setTradingPosts] = useState([] as (1 | 2 | 3)[]);
-  const [factories, setFactories] = useState([] as (1 | 2 | 3)[]);
-  const [powerPlants, setPowerPlants] = useState([] as (1 | 2 | 3)[]);
-
-  function setFacilityArray(
-    facilityType: FacilityType,
-    mutation: (newArr: (1 | 2 | 3)[]) => void
-  ) {
-    let stateMutator: React.Dispatch<React.SetStateAction<(1 | 2 | 3)[]>>;
-    if (facilityType === FacilityType.TRADING_POST) {
-      stateMutator = setTradingPosts;
-    } else if (facilityType === FacilityType.FACTORY) {
-      stateMutator = setFactories;
-    } else if (facilityType === FacilityType.POWER_PLANT) {
-      stateMutator = setPowerPlants;
-    } else {
-      throw Error(`Unknown facility type: ${facilityType}`);
-    }
-    stateMutator((prev) => {
-      const newArr = prev.slice();
-      mutation(newArr);
-      return newArr;
-    });
-  }
-
-  function handleAddFacility(facilityType: FacilityType) {
-    setFacilityArray(facilityType, (newArr) =>
-      newArr.push(DEFAULT_FACILITY_LEVEL)
-    );
-  }
-
-  function handleRemoveFacility(facilityType: FacilityType, index: number) {
-    setFacilityArray(facilityType, (newArr) => newArr.splice(index, 1));
-  }
-  function handleIncreaseFacilityLevel(
-    facilityType: FacilityType,
-    index: number
-  ) {
-    setFacilityArray(facilityType, (newArr) => {
-      // eslint-disable-next-line no-param-reassign
-      newArr[index] += 1;
-    });
-  }
-  function handleDecreaseFacilityLevel(
-    facilityType: FacilityType,
-    index: number
-  ) {
-    setFacilityArray(facilityType, (newArr) => {
-      // eslint-disable-next-line no-param-reassign
-      newArr[index] -= 1;
-    });
-  }
+  const {
+    tradingPosts,
+    factories,
+    powerPlants,
+    onAddFacility,
+    onRemoveFacility,
+    onDecreaseFacilityLevel,
+    onIncreaseFacilityLevel,
+  } = props;
 
   return (
     <>
@@ -103,10 +68,10 @@ export default function Base(): React.ReactElement {
             <Button
               className={classes.addTradingPostButton}
               variant="contained"
-              onClick={() => handleAddFacility(FacilityType.TRADING_POST)}
+              onClick={() => onAddFacility(FacilityType.TRADING_POST)}
               disabled={
-                factories.length + tradingPosts.length >= 7 ||
-                powerPlants.length + factories.length + tradingPosts.length >= 9
+                tradingPosts.length >= 5 ||
+                tradingPosts.length + factories.length + powerPlants.length >= 9
               }
             >
               Add Trading Post
@@ -118,10 +83,10 @@ export default function Base(): React.ReactElement {
             <Button
               className={classes.addFacilityButton}
               variant="contained"
-              onClick={() => handleAddFacility(FacilityType.FACTORY)}
+              onClick={() => onAddFacility(FacilityType.FACTORY)}
               disabled={
-                factories.length + tradingPosts.length >= 7 ||
-                powerPlants.length + factories.length + tradingPosts.length >= 9
+                factories.length >= 5 ||
+                tradingPosts.length + factories.length + powerPlants.length >= 9
               }
             >
               Add Factory
@@ -133,10 +98,10 @@ export default function Base(): React.ReactElement {
             <Button
               className={classes.addPowerPlantButton}
               variant="contained"
-              onClick={() => handleAddFacility(FacilityType.POWER_PLANT)}
+              onClick={() => onAddFacility(FacilityType.POWER_PLANT)}
               disabled={
                 powerPlants.length >= 3 ||
-                powerPlants.length + factories.length + tradingPosts.length >= 9
+                tradingPosts.length + factories.length + powerPlants.length >= 9
               }
             >
               Add Power Plant
@@ -152,14 +117,12 @@ export default function Base(): React.ReactElement {
               // eslint-disable-next-line react/no-array-index-key
               key={i}
               level={level}
-              onRemove={() =>
-                handleRemoveFacility(FacilityType.TRADING_POST, i)
-              }
+              onRemove={() => onRemoveFacility(FacilityType.TRADING_POST, i)}
               onIncreaseLevel={() =>
-                handleIncreaseFacilityLevel(FacilityType.TRADING_POST, i)
+                onIncreaseFacilityLevel(FacilityType.TRADING_POST, i)
               }
               onDecreaseLevel={() =>
-                handleDecreaseFacilityLevel(FacilityType.TRADING_POST, i)
+                onDecreaseFacilityLevel(FacilityType.TRADING_POST, i)
               }
             />
           ))}
@@ -171,12 +134,12 @@ export default function Base(): React.ReactElement {
               // eslint-disable-next-line react/no-array-index-key
               key={i}
               level={level}
-              onRemove={() => handleRemoveFacility(FacilityType.FACTORY, i)}
+              onRemove={() => onRemoveFacility(FacilityType.FACTORY, i)}
               onIncreaseLevel={() =>
-                handleIncreaseFacilityLevel(FacilityType.FACTORY, i)
+                onIncreaseFacilityLevel(FacilityType.FACTORY, i)
               }
               onDecreaseLevel={() =>
-                handleDecreaseFacilityLevel(FacilityType.FACTORY, i)
+                onDecreaseFacilityLevel(FacilityType.FACTORY, i)
               }
             />
           ))}
@@ -188,12 +151,12 @@ export default function Base(): React.ReactElement {
               // eslint-disable-next-line react/no-array-index-key
               key={i}
               level={level}
-              onRemove={() => handleRemoveFacility(FacilityType.POWER_PLANT, i)}
+              onRemove={() => onRemoveFacility(FacilityType.POWER_PLANT, i)}
               onIncreaseLevel={() =>
-                handleIncreaseFacilityLevel(FacilityType.POWER_PLANT, i)
+                onIncreaseFacilityLevel(FacilityType.POWER_PLANT, i)
               }
               onDecreaseLevel={() =>
-                handleDecreaseFacilityLevel(FacilityType.POWER_PLANT, i)
+                onDecreaseFacilityLevel(FacilityType.POWER_PLANT, i)
               }
             />
           ))}

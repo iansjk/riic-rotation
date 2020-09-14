@@ -10,12 +10,17 @@ import {
 } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { useState } from "react";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import Fab from "@material-ui/core/Fab";
 import Box from "@material-ui/core/Box";
 import OperatorGrid from "./components/OperatorGrid";
 import Base from "./components/Base";
+import FacilityType from "./operators/facility-type";
+import OPERATORS, { FREE_OPERATOR_NAMES } from "./operators/operators";
+import { EliteLevel, Operator } from "./operators/operator";
+
+const DEFAULT_FACILITY_LEVEL = 3;
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -47,6 +52,93 @@ export default function App(): React.ReactElement {
     },
   });
 
+  const [tradingPosts, setTradingPosts] = useState([] as (1 | 2 | 3)[]);
+  const [factories, setFactories] = useState([] as (1 | 2 | 3)[]);
+  const [powerPlants, setPowerPlants] = useState([] as (1 | 2 | 3)[]);
+  const [ownedOperators, setOwnedOperators] = useState(
+    new Map(FREE_OPERATOR_NAMES.map((name) => [name, "Elite 0"])) as Map<
+      string,
+      EliteLevel
+    >
+  );
+
+  function setFacilityArray(
+    facilityType: FacilityType,
+    mutation: (newArr: (1 | 2 | 3)[]) => void
+  ) {
+    let stateMutator: React.Dispatch<React.SetStateAction<(1 | 2 | 3)[]>>;
+    if (facilityType === FacilityType.TRADING_POST) {
+      stateMutator = setTradingPosts;
+    } else if (facilityType === FacilityType.FACTORY) {
+      stateMutator = setFactories;
+    } else if (facilityType === FacilityType.POWER_PLANT) {
+      stateMutator = setPowerPlants;
+    } else {
+      throw Error(`Unknown facility type: ${facilityType}`);
+    }
+    stateMutator((prev) => {
+      const newArr = prev.slice();
+      mutation(newArr);
+      return newArr;
+    });
+  }
+
+  function handleAddFacility(facilityType: FacilityType) {
+    setFacilityArray(facilityType, (newArr) =>
+      newArr.push(DEFAULT_FACILITY_LEVEL)
+    );
+  }
+
+  function handleRemoveFacility(facilityType: FacilityType, index: number) {
+    setFacilityArray(facilityType, (newArr) => newArr.splice(index, 1));
+  }
+  function handleIncreaseFacilityLevel(
+    facilityType: FacilityType,
+    index: number
+  ) {
+    setFacilityArray(facilityType, (newArr) => {
+      // eslint-disable-next-line no-param-reassign
+      newArr[index] += 1;
+    });
+  }
+  function handleDecreaseFacilityLevel(
+    facilityType: FacilityType,
+    index: number
+  ) {
+    setFacilityArray(facilityType, (newArr) => {
+      // eslint-disable-next-line no-param-reassign
+      newArr[index] -= 1;
+    });
+  }
+
+  function operatorSort(a: Operator, b: Operator) {
+    const byOwned =
+      (ownedOperators.has(a.name) ? -1 : 1) -
+      (ownedOperators.has(b.name) ? -1 : 1);
+    if (byOwned !== 0) {
+      return byOwned;
+    }
+    const byRarityAsc = a.rarity - b.rarity;
+    if (byRarityAsc !== 0) {
+      return byRarityAsc;
+    }
+    return a.name.localeCompare(b.name);
+  }
+
+  function handleEliteSelect(
+    operatorName: string,
+    eliteLevel?: EliteLevel
+  ): void {
+    setOwnedOperators((prevMap: Map<string, EliteLevel>) => {
+      if (!eliteLevel) {
+        prevMap.delete(operatorName);
+      } else {
+        prevMap.set(operatorName, eliteLevel);
+      }
+      return new Map(prevMap);
+    });
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -64,10 +156,20 @@ export default function App(): React.ReactElement {
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item sm={12} md={6}>
-            <OperatorGrid />
+            <OperatorGrid
+              operators={OPERATORS.sort(operatorSort)}
+              ownedOperators={ownedOperators}
+              onEliteSelect={handleEliteSelect}
+            />
           </Grid>
           <Grid item sm={12} md={6}>
-            <Base />
+            <Base
+              {...{ tradingPosts, factories, powerPlants }}
+              onAddFacility={handleAddFacility}
+              onRemoveFacility={handleRemoveFacility}
+              onDecreaseFacilityLevel={handleDecreaseFacilityLevel}
+              onIncreaseFacilityLevel={handleIncreaseFacilityLevel}
+            />
           </Grid>
         </Grid>
 
