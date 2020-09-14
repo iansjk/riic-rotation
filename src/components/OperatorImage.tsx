@@ -58,7 +58,7 @@ export default function OperatorImage({
   return (
     <div
       className={classes.eliteLevelAnchor}
-      style={!eliteLevel ? { opacity: 0.1 } : {}}
+      style={!eliteLevel ? { opacity: 0.2 } : {}}
     >
       <img
         className={classes.operatorImage}
