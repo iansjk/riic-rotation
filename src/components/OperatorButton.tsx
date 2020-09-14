@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import OperatorImage from "./OperatorImage";
-import { Operator } from "../operators/operator";
+import { EliteLevel, Operator } from "../operators/operator";
 
 const OPERATOR_RARITY_COLORS = [
   undefined,
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
 
 interface OperatorButtonProps {
   operator: Operator | null;
-  eliteStatus?: number;
+  eliteLevel?: EliteLevel;
   labelOverride?: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -50,14 +50,17 @@ export default function OperatorButton(
   props: OperatorButtonProps
 ): React.ReactElement {
   const classes = useStyles();
-  const { operator, eliteStatus, labelOverride, onClick } = props;
+  const { operator, eliteLevel, labelOverride, onClick } = props;
   const labelText = labelOverride || operator?.name || "Don't have";
 
   return (
     <Box boxShadow={3}>
       <ButtonBase onClick={onClick}>
         <Grid className={classes.gridItem} item xs>
-          <OperatorImage operator={operator} eliteStatus={eliteStatus} />
+          <OperatorImage
+            operator={operator}
+            eliteLevel={eliteLevel}
+          />
           <Box
             className={classes.operatorName}
             style={

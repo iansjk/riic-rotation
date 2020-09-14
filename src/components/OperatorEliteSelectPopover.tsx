@@ -4,7 +4,7 @@ import Popover from "@material-ui/core/Popover";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import OperatorButton from "./OperatorButton";
-import { maxEliteStatus, Operator } from "../operators/operator";
+import { EliteLevel, maxEliteLevel, Operator } from "../operators/operator";
 
 const useStyles = makeStyles({
   backdrop: {
@@ -29,12 +29,15 @@ export default function OperatorEliteSelectPopover(
 ): React.ReactElement {
   const { open, operator } = props;
   const classes = useStyles();
-  const eliteRanks =
-    maxEliteStatus(operator) === 0
-      ? ["0", "0 Lv. 30"]
-      : Array(maxEliteStatus(operator) + 1)
-          .fill(0)
-          .map((_, i) => i);
+  const eliteLevels: EliteLevel[] = ["Elite 0"];
+  if (maxEliteLevel(operator) === "Elite 0 Lv. 30") {
+    eliteLevels.push("Elite 0 Lv. 30");
+  } else if (maxEliteLevel(operator) === "Elite 1") {
+    eliteLevels.push("Elite 1");
+  } else if (maxEliteLevel(operator) === "Elite 2") {
+    eliteLevels.push("Elite 1");
+    eliteLevels.push("Elite 2");
+  }
 
   return (
     <>
@@ -53,18 +56,15 @@ export default function OperatorEliteSelectPopover(
       >
         <Grid container>
           <Grid item>
-            <OperatorButton operator={null} onClick={() => {}} />
+            <OperatorButton owned operator={null} onClick={() => {}} />
           </Grid>
-          {
-            // have to explicitly cast to any[] to call map() on a union of array types
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (eliteRanks as any[]).map((rank: string | number) => (
-              <Grid item key={`${operator.name}E${rank}`}>
+          {eliteLevels.map((eliteLevel) => (
+            <Grid item key={`${operator.name}${eliteLevel}`}>
                 <OperatorButton
                   operator={operator}
-                  eliteStatus={typeof rank === "string" ? 0 : rank}
-                  labelOverride={`Elite ${rank}`}
-                  onClick={() => {}}
+                owned
+                eliteLevel={eliteLevel}
+                labelOverride={eliteLevel}
                 />
               </Grid>
             ))

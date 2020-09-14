@@ -1,6 +1,6 @@
 import FacilityType from "./facility-type";
 
-export type EliteLevel = "E0" | "E1" | "E2" | "E0MaxLevel";
+export type EliteLevel = "Elite 0" | "Elite 0 Lv. 30" | "Elite 1" | "Elite 2";
 
 export interface OperatorBonus {
   facility: FacilityType;
@@ -18,12 +18,12 @@ export interface Operator {
   bonuses: OperatorBonus[];
 }
 
-export function maxEliteStatus(operator: Operator): number {
+export function maxEliteLevel(operator: Operator): EliteLevel {
   if (operator.rarity >= 4) {
-    return 2;
+    return "Elite 2";
   }
   if (operator.rarity >= 3) {
-    return 1;
+    return "Elite 1";
   }
-  return 0;
+  return "Elite 0 Lv. 30";
 }

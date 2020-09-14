@@ -9,7 +9,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 35,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
         goldOnly: true,
       },
     ],
@@ -21,7 +21,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 30,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
         goldOnly: true,
       },
     ],
@@ -38,7 +38,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.TRADING_POST,
         bonus: 30,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -55,7 +55,7 @@ export const OPERATORS: Operator[] = [
         facility: FacilityType.FACTORY,
         bonus: 35,
         expOnly: true,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -70,7 +70,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 30,
-        eliteRequired: "E0MaxLevel",
+        eliteRequired: "Elite 0 Lv. 30",
       },
     ],
   },
@@ -81,7 +81,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 30,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
         expOnly: true,
       },
       {
@@ -109,7 +109,7 @@ export const OPERATORS: Operator[] = [
         facility: FacilityType.FACTORY,
         bonus: 30,
         expOnly: true,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -120,7 +120,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 40,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -131,7 +131,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 30,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -159,7 +159,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 25,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -174,7 +174,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.TRADING_POST,
         bonus: 30,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -199,7 +199,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.RECEPTION_ROOM,
         bonus: 10,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -210,7 +210,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 25,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -225,7 +225,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.TRADING_POST,
         bonus: 20,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -236,7 +236,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 25,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -251,7 +251,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 25,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -266,7 +266,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 25,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -283,7 +283,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 0,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -308,7 +308,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.FACTORY,
         bonus: 15,
-        eliteRequired: "E0MaxLevel",
+        eliteRequired: "Elite 0 Lv. 30",
       },
     ],
   },
@@ -346,7 +346,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.TRADING_POST,
         bonus: 20,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -363,7 +363,7 @@ export const OPERATORS: Operator[] = [
         facility: FacilityType.TRADING_POST,
         bonus: 10,
         limitIncrease: 1,
-        eliteRequired: "E0MaxLevel",
+        eliteRequired: "Elite 0 Lv. 30",
       },
     ],
   },
@@ -378,7 +378,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.TRADING_POST,
         bonus: 35,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -394,7 +394,7 @@ export const OPERATORS: Operator[] = [
         facility: FacilityType.TRADING_POST,
         bonus: 30,
         limitIncrease: 1,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -405,7 +405,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.TRADING_POST,
         bonus: 30,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -421,7 +421,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.RECEPTION_ROOM,
         bonus: 10,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -432,7 +432,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.TRADING_POST,
         bonus: 30,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -502,7 +502,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.RECEPTION_ROOM,
         bonus: 25,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -550,7 +550,7 @@ export const OPERATORS: Operator[] = [
         facility: FacilityType.TRADING_POST,
         bonus: 25,
         limitIncrease: 1,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -571,7 +571,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.TRADING_POST,
         bonus: 30,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -586,7 +586,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.TRADING_POST,
         bonus: 35,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -603,7 +603,7 @@ export const OPERATORS: Operator[] = [
         facility: FacilityType.TRADING_POST,
         bonus: 20,
         limitIncrease: 3,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -640,7 +640,7 @@ export const OPERATORS: Operator[] = [
         facility: FacilityType.TRADING_POST,
         bonus: 30,
         limitIncrease: 1,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -685,7 +685,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.POWER_PLANT,
         bonus: 15,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -706,7 +706,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.POWER_PLANT,
         bonus: 15,
-        eliteRequired: "E1",
+        eliteRequired: "Elite 1",
       },
     ],
   },
@@ -721,7 +721,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.POWER_PLANT,
         bonus: 15,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
@@ -736,7 +736,7 @@ export const OPERATORS: Operator[] = [
       {
         facility: FacilityType.POWER_PLANT,
         bonus: 20,
-        eliteRequired: "E2",
+        eliteRequired: "Elite 2",
       },
     ],
   },
