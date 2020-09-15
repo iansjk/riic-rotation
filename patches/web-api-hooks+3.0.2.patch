@@ -1,0 +1,10 @@
+diff --git a/node_modules/web-api-hooks/dist-types/index.d.ts b/node_modules/web-api-hooks/dist-types/index.d.ts
+index 66a9d0c..12b6a88 100644
+--- a/node_modules/web-api-hooks/dist-types/index.d.ts
++++ b/node_modules/web-api-hooks/dist-types/index.d.ts
+@@ -1,4 +1,4 @@
+-export type { EventArgs, EventMap, JSONArray, JSONObject, JSONValue, } from './types';
++export { EventArgs, EventMap, JSONArray, JSONObject, JSONValue, } from './types';
+ export { default as useColorSchemePreference } from './useColorSchemePreference';
+ export { default as useDeviceMotion } from './useDeviceMotion';
+ export { default as useDeviceOrientation } from './useDeviceOrientation';

@@ -10,7 +10,7 @@ import OperatorCell from "./OperatorCell";
 
 interface OperatorGridProps {
   operators: Operator[];
-  ownedOperators: Map<string, EliteLevel>;
+  ownedOperators: Record<string, EliteLevel>;
   onEliteSelect: (operatorName: string, eliteLevel?: EliteLevel) => void;
   onAddAll: () => void;
   onReset: () => void;
@@ -48,7 +48,7 @@ function OperatorGrid(props: OperatorGridProps): React.ReactElement {
           <OperatorCell
             key={operator.name}
             operator={operator}
-            eliteLevel={ownedOperators.get(operator.name)}
+            eliteLevel={ownedOperators[operator.name]}
             onEliteSelect={onEliteSelect}
           />
         ))}

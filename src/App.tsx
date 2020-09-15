@@ -1,6 +1,8 @@
 import AppBar from "@material-ui/core/AppBar";
+import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
 import {
   createMuiTheme,
@@ -10,24 +12,19 @@ import {
 } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React, { useState } from "react";
 import ScheduleIcon from "@material-ui/icons/Schedule";
-import Fab from "@material-ui/core/Fab";
-import Box from "@material-ui/core/Box";
-import OperatorGrid from "./components/OperatorGrid";
+import React from "react";
+import { useLocalStorage } from "web-api-hooks";
 import Base from "./components/Base";
+import OperatorGrid from "./components/OperatorGrid";
 import FacilityType from "./scheduler/facility-type";
-import OPERATORS, { FREE_OPERATOR_NAMES } from "./scheduler/operators";
 import { EliteLevel, maxEliteLevel, Operator } from "./scheduler/operator";
+import OPERATORS, { FREE_OPERATOR_NAMES } from "./scheduler/operators";
 
 const DEFAULT_FACILITY_LEVEL = 3;
 
-const freeOperators = (): Map<string, EliteLevel> => {
-  return new Map(FREE_OPERATOR_NAMES.map((name) => [name, "Elite 0"])) as Map<
-    string,
-    EliteLevel
-  >;
-};
+const freeOperators = (): Record<string, EliteLevel> =>
+  Object.fromEntries(FREE_OPERATOR_NAMES.map((name) => [name, "Elite 0"]));
 
 const appTheme = createMuiTheme({
   palette: {
@@ -60,10 +57,22 @@ const useStyles = makeStyles((theme) =>
 export default function App(): React.ReactElement {
   const classes = useStyles();
 
-  const [tradingPosts, setTradingPosts] = useState([] as (1 | 2 | 3)[]);
-  const [factories, setFactories] = useState([] as (1 | 2 | 3)[]);
-  const [powerPlants, setPowerPlants] = useState([] as (1 | 2 | 3)[]);
-  const [ownedOperators, setOwnedOperators] = useState(freeOperators());
+  const [tradingPosts, setTradingPosts] = useLocalStorage(
+    "tradingPosts",
+    [] as (1 | 2 | 3)[]
+  );
+  const [factories, setFactories] = useLocalStorage(
+    "factories",
+    [] as (1 | 2 | 3)[]
+  );
+  const [powerPlants, setPowerPlants] = useLocalStorage(
+    "powerPlants",
+    [] as (1 | 2 | 3)[]
+  );
+  const [ownedOperators, setOwnedOperators] = useLocalStorage(
+    "ownedOperators",
+    freeOperators
+  );
 
   function setFacilityArray(
     facilityType: FacilityType,
@@ -95,6 +104,7 @@ export default function App(): React.ReactElement {
   function handleRemoveFacility(facilityType: FacilityType, index: number) {
     setFacilityArray(facilityType, (newArr) => newArr.splice(index, 1));
   }
+
   function handleIncreaseFacilityLevel(
     facilityType: FacilityType,
     index: number
@@ -104,6 +114,7 @@ export default function App(): React.ReactElement {
       newArr[index] += 1;
     });
   }
+
   function handleDecreaseFacilityLevel(
     facilityType: FacilityType,
     index: number
@@ -116,8 +127,8 @@ export default function App(): React.ReactElement {
 
   function operatorSort(a: Operator, b: Operator) {
     const byOwned =
-      (ownedOperators.has(a.name) ? -1 : 1) -
-      (ownedOperators.has(b.name) ? -1 : 1);
+      (Object.prototype.hasOwnProperty.call(ownedOperators, a.name) ? -1 : 1) -
+      (Object.prototype.hasOwnProperty.call(ownedOperators, b.name) ? -1 : 1);
     if (byOwned !== 0) {
       return byOwned;
     }
@@ -132,19 +143,20 @@ export default function App(): React.ReactElement {
     operatorName: string,
     eliteLevel?: EliteLevel
   ): void {
-    setOwnedOperators((prevMap: Map<string, EliteLevel>) => {
+    setOwnedOperators((prev: Record<string, EliteLevel>) => {
+      const newObj = { ...prev };
       if (!eliteLevel) {
-        prevMap.delete(operatorName);
+        delete newObj[operatorName];
       } else {
-        prevMap.set(operatorName, eliteLevel);
+        newObj[operatorName] = eliteLevel;
       }
-      return new Map(prevMap);
+      return newObj;
     });
   }
 
   function handleAddAllOperators() {
     setOwnedOperators(
-      new Map(
+      Object.fromEntries(
         OPERATORS.map((operator) => [operator.name, maxEliteLevel(operator)])
       )
     );
