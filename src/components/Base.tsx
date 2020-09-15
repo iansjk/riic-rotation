@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
+import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import FacilityType from "../scheduler/facility-type";
 import Facility from "./Facility";
 
@@ -41,6 +42,7 @@ interface BaseProps {
   onRemoveFacility: (facilityType: FacilityType, index: number) => void;
   onDecreaseFacilityLevel: (facilityType: FacilityType, index: number) => void;
   onIncreaseFacilityLevel: (facilityType: FacilityType, index: number) => void;
+  onReset: () => void;
 }
 
 export default function Base(props: BaseProps): React.ReactElement {
@@ -53,14 +55,24 @@ export default function Base(props: BaseProps): React.ReactElement {
     onRemoveFacility,
     onDecreaseFacilityLevel,
     onIncreaseFacilityLevel,
+    onReset,
   } = props;
 
   return (
     <>
-      <Box mt={3} mb={2}>
-        <Typography component="h3" variant="h5">
+      <Box display="flex" mt={3} mb={2}>
+        <Typography component="h2" variant="h5">
           Base Layout
         </Typography>
+        <Box ml={4} mr={2}>
+          <Button
+            variant="outlined"
+            startIcon={<RotateLeftIcon />}
+            onClick={onReset}
+          >
+            Reset
+          </Button>
+        </Box>
       </Box>
       <Grid container spacing={3}>
         <Grid item xs={4}>

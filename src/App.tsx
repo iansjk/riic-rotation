@@ -125,6 +125,12 @@ export default function App(): React.ReactElement {
     });
   }
 
+  function handleResetBase() {
+    setTradingPosts([]);
+    setFactories([]);
+    setPowerPlants([]);
+  }
+
   function operatorSort(a: Operator, b: Operator) {
     const byOwned =
       (Object.prototype.hasOwnProperty.call(ownedOperators, a.name) ? -1 : 1) -
@@ -198,6 +204,7 @@ export default function App(): React.ReactElement {
               onRemoveFacility={handleRemoveFacility}
               onDecreaseFacilityLevel={handleDecreaseFacilityLevel}
               onIncreaseFacilityLevel={handleIncreaseFacilityLevel}
+              onReset={handleResetBase}
             />
           </Grid>
         </Grid>
