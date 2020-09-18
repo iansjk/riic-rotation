@@ -60,6 +60,9 @@ export default function Base(props: BaseProps): React.ReactElement {
 
   return (
     <>
+      {
+        // TODO columns need to split into separate rows at sm breakpoint
+      }
       <Box display="flex" mt={3} mb={2}>
         <Typography component="h2" variant="h5">
           Base Layout

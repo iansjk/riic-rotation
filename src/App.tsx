@@ -179,6 +179,9 @@ export default function App(): React.ReactElement {
       <AppBar>
         <Toolbar>
           <Typography component="h1" variant="h4">
+            {
+              // TODO h4 font size breaks at about 516 px (i.e. xs)
+            }
             Arknights Base Rotation Planner
           </Typography>
         </Toolbar>
@@ -188,6 +191,9 @@ export default function App(): React.ReactElement {
 
       <Container maxWidth="lg">
         <Grid container spacing={2}>
+          {
+            // TODO may need to change md={6} to lg={6}
+          }
           <Grid item sm={12} md={6}>
             <OperatorGrid
               operators={OPERATORS.sort(operatorSort)}

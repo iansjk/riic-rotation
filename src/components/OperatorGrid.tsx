@@ -25,6 +25,9 @@ function OperatorGrid(props: OperatorGridProps): React.ReactElement {
         <Typography component="h2" variant="h5">
           Owned Operators
         </Typography>
+        {
+          // TODO buttons need to split onto another line at sm breakpoint
+        }
         <Box ml={4} mr={2}>
           <Button
             color="primary"
